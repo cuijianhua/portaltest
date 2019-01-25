@@ -1,0 +1,564 @@
+;===================================================================
+; Device description file according to EN 50170 Vol. 2 (PROFIBUS-DP)
+; for Distance Measuring Device DME4000/5000 Profibus
+;
+; Encoder Class 2, 32 Bit Data
+;
+; Filename:        SIV2069D.GSD
+; Hardware-Release 1.00
+; Software-Release 1.64
+;
+; Changes:
+; 2002-10-22: Added C2 read/write support for SICK engineering tool
+; 2002-10-25: Changed names and texts for some parameters
+; 2002-11-05: Software-Release 1.24
+; 2002-11-14: Software-Release 1.26; removed section Physical_Interface
+; 2002-11-28: Software-Release 1.60
+; 2002-12-10: Repeater_Ctrl_Sig = 0
+; 2003-08-25: Bitmap_Device = "SICK069D"
+; 2004-03-22: Software-Release 1.64; added speed limit parameters
+; 2004-03-31: shortened Model_Name to <= 24 characters for STEP7
+; 2004-11-15: Speed limit as absolute value and direction; new Model_Name
+; 2004-12-01: Ext. diagnostics: changed default to 0; MFx Speed Sign: new text
+; 2008-09-02: Extended to DME4000 and changed Model_Name accordingly
+;
+; Vendor           Sick AG
+; Contact:         http://www.sick.de
+;
+; Copyright (C) SICK AG 2002
+; All Rights Reserved.
+;===================================================================
+#Profibus_DP
+; Unit-Definition-List:
+GSD_Revision=3
+Vendor_Name="SICK AG"
+Model_Name="DME4000/5000 Profibus V2"
+Revision="V1.64"
+Ident_Number=0x069D
+Protocol_Ident=0
+Station_Type=0
+FMS_Supp = 0
+Hardware_Release="1.00"
+Software_Release="1.64"
+
+
+
+; <Prm-Text-Def-List>
+;----------------------------
+PrmText=1
+Text(0)="disabled"
+Text(1)="enabled"
+EndPrmText
+
+PrmText=2
+Text(0)="Encoder Profile"
+Text(1)="SICK Profile"
+EndPrmText
+
+PrmText=3
+Text(0)="off"
+Text(1)="normal"
+Text(2)="200 ms"
+EndPrmText
+
+PrmText=4
+Text(0)="Offset mode"
+Text(1)="Preset mode"
+EndPrmText
+
+PrmText=5
+Text(0)="4800 Bd"
+Text(1)="9600 Bd"
+Text(2)="19200 Bd"
+Text(3)="38400 Bd"
+Text(4)="115200 Bd"
+EndPrmText
+
+PrmText=6
+Text(0)="7e1"
+Text(1)="8e1"
+Text(2)="8n1"
+EndPrmText
+
+PrmText=7
+Text(0)="low"
+Text(1)="high"
+EndPrmText
+
+PrmText=8
+Text(0)="Distance"
+Text(1)="Service"
+Text(2)="Sleep"
+Text(3)="Preset"
+Text(4)="Speed"
+EndPrmText
+
+PrmText=9
+Text(0)="Distance"
+Text(1)="Service"
+Text(2)="Speed"
+EndPrmText
+
+PrmText=10
+Text(0)="+/-"
+Text(1)="-"
+Text(2)="+"
+EndPrmText
+
+; Ext-User-Prm-Data-Def-List>
+;----------------------------
+
+; Note: Prm Octet count starts with 1 including the DP norm parameters
+;       User parameter bytes are counted from zero starting with first
+;       User_Prm_data byte (Prm Octet 8)
+
+
+; Prm Octet 9 = User parameter byte 1: Various bits
+;
+ExtUserPrmData = 3 "Class 2 function"
+Bit(1) 1 0-1
+Prm_Text_Ref = 1
+EndExtUserPrmData
+;
+ExtUserPrmData = 8 "Extended diagnostics"
+Bit(6) 0 0-1
+Prm_Text_Ref = 1
+EndExtUserPrmData
+;
+ExtUserPrmData = 9 "Preset mode"
+Bit(7) 0 0-1
+Prm_Text_Ref = 4
+EndExtUserPrmData
+
+; Prm Octet 26 = User parameter byte 18: Parameter.OutBusMode
+;
+ExtUserPrmData = 40 "Profile Selection"
+Unsigned8 0x01 0x00-0x01
+Prm_Text_Ref = 2
+EndExtUserPrmData
+;
+
+
+; Prm Octet 27 = User parameter byte 19: Parameter.ProcPlausib
+;
+ExtUserPrmData = 50 "Plausibility"
+Unsigned8 0x02 0x00-0x02
+Prm_Text_Ref = 3
+EndExtUserPrmData
+;
+
+
+; Prm Octet 28 = User parameter byte 20: Parameter.SerialMode
+;
+ExtUserPrmData = 60 "Serial Mode: BaudRate"
+BitArea(0-2) 2 0-4
+Prm_Text_Ref = 5
+EndExtUserPrmData
+;
+ExtUserPrmData = 61 "Serial Mode: Data"
+BitArea(4-5) 2 0-2
+Prm_Text_Ref = 6
+EndExtUserPrmData
+;
+
+; Prm Octet 29..30 = User parameter byte 21..22: Parameter.ProcResolution
+;
+ExtUserPrmData = 70 "Resolution (um)"
+Unsigned16 100 50-5000
+EndExtUserPrmData
+;
+
+
+; Prm Octet 31..34 = User parameter byte 23..26: Parameter.ProcOffset
+;
+ExtUserPrmData = 71 "Offset (steps)"
+; Note: The parameter "Offset" is given in units of the measuring
+;       resolution with the limits -250 m ... 250 m.
+;       GSD does not support parameter-dependant dynamic limits.
+;       Therefore the following limits are calculated for the
+;       minimum allowed measuring resolution (50 um)
+Signed32 0 -5000000-5000000
+EndExtUserPrmData
+;
+
+
+; Prm Octet 35 = User parameter byte 27: Parameter.Mf1Service
+;
+ExtUserPrmData = 81 "Service MF1: Plausibility"
+Bit(1) 1 0-1
+Prm_Text_Ref = 1
+EndExtUserPrmData
+;
+ExtUserPrmData = 82 "Service MF1: Ready"
+Bit(2) 1 0-1
+Prm_Text_Ref = 1
+EndExtUserPrmData
+;
+ExtUserPrmData = 83 "Service MF1: Laser"
+Bit(3) 1 0-1
+Prm_Text_Ref = 1
+EndExtUserPrmData
+;
+ExtUserPrmData = 84 "Service MF1: Level"
+Bit(4) 1 0-1
+Prm_Text_Ref = 1
+EndExtUserPrmData
+;
+ExtUserPrmData = 85 "Service MF1: BusStatus"
+Bit(5) 0 0-1
+Prm_Text_Ref = 1
+EndExtUserPrmData
+;
+ExtUserPrmData = 86 "Service MF1: LowerTemperature"
+Bit(6) 1 0-1
+Prm_Text_Ref = 1
+EndExtUserPrmData
+;
+ExtUserPrmData = 87 "Service MF1: UpperTemperature"
+Bit(7) 1 0-1
+Prm_Text_Ref = 1
+EndExtUserPrmData
+;
+
+
+; Prm Octet 36 = User parameter byte 28: Parameter.Mf2Service
+;
+ExtUserPrmData = 91 "Service MF2: Plausibility"
+Bit(1) 1 0-1
+Prm_Text_Ref = 1
+EndExtUserPrmData
+;
+ExtUserPrmData = 92 "Service MF2: Ready"
+Bit(2) 1 0-1
+Prm_Text_Ref = 1
+EndExtUserPrmData
+;
+ExtUserPrmData = 93 "Service MF2: Laser"
+Bit(3) 1 0-1
+Prm_Text_Ref = 1
+EndExtUserPrmData
+;
+ExtUserPrmData = 94 "Service MF2: Level"
+Bit(4) 1 0-1
+Prm_Text_Ref = 1
+EndExtUserPrmData
+;
+ExtUserPrmData = 95 "Service MF2: BusStatus"
+Bit(5) 0 0-1
+Prm_Text_Ref = 1
+EndExtUserPrmData
+;
+ExtUserPrmData = 96 "Service MF2: LowerTemperature"
+Bit(6) 1 0-1
+Prm_Text_Ref = 1
+EndExtUserPrmData
+;
+ExtUserPrmData = 97 "Service MF2: UpperTemperature"
+Bit(7) 1 0-1
+Prm_Text_Ref = 1
+EndExtUserPrmData
+;
+
+
+; Prm Octet 37 = User parameter byte 29: Parameter.Mf1TempLimitHigh
+;
+ExtUserPrmData = 100 "MF1 Temperature UpperLimit"
+Signed8 70 -40-95
+EndExtUserPrmData
+;
+
+
+; Prm Octet 38 = User parameter byte 30: Parameter.Mf1TempLimitLow
+;
+ExtUserPrmData = 101 "MF1 Temperature LowerLimit"
+Signed8 0 -40-95
+EndExtUserPrmData
+;
+
+
+; Prm Octet 39 = User parameter byte 31: Parameter.Mf2TempLimitHigh
+;
+ExtUserPrmData = 102 "MF2 Temperature UpperLimit"
+Signed8 70 -40-95
+EndExtUserPrmData
+;
+
+
+; Prm Octet 40 = User parameter byte 32: Parameter.Mf2TempLimitLow
+;
+ExtUserPrmData = 103 "MF2 Temperature LowerLimit"
+Signed8 0 -40-95
+EndExtUserPrmData
+;
+
+
+; Prm Octet 41 = User parameter byte 33: Parameter.Mf1Type
+;
+ExtUserPrmData = 111 "MF1 ActiveState"
+Bit(7) 1 0-1
+Prm_Text_Ref = 7
+EndExtUserPrmData
+;
+ExtUserPrmData = 112 "MF1 Function"
+BitArea(0-2) 0 0-4
+Prm_Text_Ref = 8
+EndExtUserPrmData
+;
+
+
+; Prm Octet 42 = User parameter byte 34: Parameter.Mf2Type
+;
+ExtUserPrmData = 121 "MF2 ActiveState"
+Bit(7) 0 0-1
+Prm_Text_Ref = 7
+EndExtUserPrmData
+;
+ExtUserPrmData = 122 "MF2 Function"
+BitArea(0-2) 1 0-2
+Prm_Text_Ref = 9
+EndExtUserPrmData
+;
+
+
+; Prm Octet 43..46 = User parameter byte 35..38: Parameter.Mf1DistLimitHigh
+;
+ExtUserPrmData = 130 "MF1 Distance UpperLimit (mm)"
+Signed32 2000 -250000-500000
+EndExtUserPrmData
+;
+
+
+; Prm Octet 47..50 = User parameter byte 39..42: Parameter.Mf1DistLimitLow
+;
+ExtUserPrmData = 131 "MF1 Distance LowerLimit (mm)"
+Signed32 1990 -250000-500000
+EndExtUserPrmData
+;
+
+
+; Prm Octet 51..54 = User parameter byte 43..46: Parameter.Mf2DistLimitHigh
+;
+ExtUserPrmData = 132 "MF2 Distance UpperLimit (mm)"
+Signed32 3000 -250000-500000
+EndExtUserPrmData
+;
+
+
+; Prm Octet 55..58 = User parameter byte 47..50: Parameter.Mf2DistLimitLow
+;
+ExtUserPrmData = 133 "MF2 Distance LowerLimit (mm)"
+Signed32 2990 -250000-500000
+EndExtUserPrmData
+;
+
+
+; Prm Octet 59..62 = User parameter byte 51..54: Parameter.MfPreset
+;
+ExtUserPrmData = 134 "Preset (steps)"
+; Note: The parameter "Preset" is given in units of the measuring
+;       resolution with the limits -250 m ... 250 m.
+;       GSD does not support parameter-dependant dynamic limits.
+;       Therefore the following limits are calculated for the
+;       minimum allowed measuring resolution (50 um)
+Signed32 0 -5000000-5000000
+EndExtUserPrmData
+;
+
+
+; Prm Octet 63 = User parameter byte 55: Parameter.Mf1SpeedLimitHigh
+;
+ExtUserPrmData = 135 "MF1 Speed Limit (0.1 m/s)"
+Unsigned8 0 0-99
+EndExtUserPrmData
+;
+
+
+; Prm Octet 64 = User parameter byte 56: Parameter.Mf1SpeedLimitLow
+;
+ExtUserPrmData = 136 "MF1 Speed Sign"
+BitArea(0-1) 0 0-2
+Prm_Text_Ref = 10
+EndExtUserPrmData
+
+;
+
+
+; Prm Octet 65 = User parameter byte 57: Parameter.Mf2SpeedLimitHigh
+;
+ExtUserPrmData = 137 "MF2 Speed Limit (0.1 m/s)"
+Unsigned8 0 0-99
+EndExtUserPrmData
+;
+
+
+; Prm Octet 66 = User parameter byte 58: Parameter.Mf2SpeedLimitLow
+;
+ExtUserPrmData = 138 "MF2 Speed Sign"
+BitArea(0-1) 0 0-2
+Prm_Text_Ref = 10
+EndExtUserPrmData
+;
+
+
+
+
+; General Parameters
+;----------------------------
+
+9.6_supp = 1
+19.2_supp = 1
+45.45_supp = 1
+93.75_supp = 1
+187.5_supp = 1
+500_supp = 1
+1.5M_supp = 1
+3M_supp = 1
+6M_supp = 1
+12M_supp = 1
+MaxTsdr_9.6 = 15
+MaxTsdr_19.2 = 15
+MaxTsdr_45.45 = 15
+MaxTsdr_93.75 = 15
+MaxTsdr_187.5 = 15
+MaxTsdr_500 = 15
+MaxTsdr_1.5M = 25
+MaxTsdr_3M = 50
+MaxTsdr_6M = 100
+MaxTsdr_12M = 200
+Repeater_Ctrl_Sig = 0
+24V_Pins = 0
+Implementation_Type="DPC31"
+
+Bitmap_Device = "SICK069D"
+
+Freeze_Mode_supp=1
+Sync_Mode_supp = 1
+Auto_Baud_supp = 1
+Set_Slave_Add_supp = 0
+Max_User_Prm_Data_Len=59
+Min_Slave_Intervall=2
+
+Fail_Safe = 1
+Max_Diag_Data_Len=63
+Slave_Family=7
+
+Diag_Update_Delay = 255
+
+DP_Encoder_class = 2
+DP_Encoder_profile_version = 1.1
+DP_Encoder_manufacturer_specific_functions = 1
+
+; Due to encoder profile compatibility, MSAC_C1 is not supported.
+; Nevertheless, MSAC_C2 read and write services are provided.
+DPV1_Slave = 0
+C2_Read_Write_supp = 1
+C2_Max_Data_Len = 64
+C2_Response_Timeout = 6
+C2_Max_Count_Channels = 1
+Max_Initiate_PDU_Length = 64
+
+;Alarm byte (octet 8)
+Unit_Diag_Bit(0)       = "Measurement error"
+Unit_Diag_Bit(3)       = "Pre-failure"
+Unit_Diag_Bit(4)       = "Device failure"
+
+;Additional alarms (octet 17)
+Unit_Diag_Bit(72)      = "Hardware failure"
+Unit_Diag_Bit(73)      = "Temperature failure"
+Unit_Diag_Bit(74)      = "Plausibility failure"
+Unit_Diag_Bit(75)      = "Bus module failure"
+
+;Additional warnings (octet 20)
+Unit_Diag_Bit(96)      = "Laser pre-failure"
+
+;Warnings (octet 21)
+Unit_Diag_Bit(105)     = "Temperature warning"
+Unit_Diag_Bit(106)     = "Level warning"
+
+
+
+; Module configuration
+;----------------------------
+Modular_Station = 1
+Modul_Offset = 1
+Max_Module = 1
+Max_Input_Len=4
+Max_Output_Len=4
+Max_Data_Len=8
+
+
+; Module 1: Encoder Class 1
+;----------------------------
+Module = "Class 1: 4 Byte Input" 0xD1
+1
+Ext_Module_Prm_Data_Len = 2
+
+Ext_User_Prm_Data_Const(0) = 0x00,0x00
+
+Ext_User_Prm_Data_Ref(1)=8
+
+EndModule
+
+
+; Module 2: Encoder Class 2
+;----------------------------
+Module = "Class 2: 4 Byte I/O" 0xF1
+2
+Ext_Module_Prm_Data_Len = 59
+
+Ext_User_Prm_Data_Const(0) =  0x00,0x02,0x00,0x00,0x00,0x00,\
+0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,\
+0x01,0x02,0x22,0x00,0x64,0x00,0x00,0x00,0x00,0xDE,0xDE,\
+0x46,0x00,0x46,0x00,0x80,0x01,0x00,0x00,0x07,0xD0,0x00,0x00,0x07,0xC6,\
+0x00,0x00,0x0B,0xB8,0x00,0x00,0x0B,0xAE,0x00,0x00,0x00,0x00,\
+0x00,0x00,0x00,0x00
+
+Ext_User_Prm_Data_Ref(1)=8
+Ext_User_Prm_Data_Ref(1)=9
+
+Ext_User_Prm_Data_Ref(18)=40
+Ext_User_Prm_Data_Ref(19)=50
+Ext_User_Prm_Data_Ref(20)=60
+Ext_User_Prm_Data_Ref(20)=61
+
+Ext_User_Prm_Data_Ref(21)=70
+Ext_User_Prm_Data_Ref(23)=71
+
+Ext_User_Prm_Data_Ref(27)=81
+Ext_User_Prm_Data_Ref(27)=82
+Ext_User_Prm_Data_Ref(27)=83
+Ext_User_Prm_Data_Ref(27)=84
+Ext_User_Prm_Data_Ref(27)=85
+Ext_User_Prm_Data_Ref(27)=86
+Ext_User_Prm_Data_Ref(27)=87
+
+Ext_User_Prm_Data_Ref(28)=91
+Ext_User_Prm_Data_Ref(28)=92
+Ext_User_Prm_Data_Ref(28)=93
+Ext_User_Prm_Data_Ref(28)=94
+Ext_User_Prm_Data_Ref(28)=95
+Ext_User_Prm_Data_Ref(28)=96
+Ext_User_Prm_Data_Ref(28)=97
+
+Ext_User_Prm_Data_Ref(29)=100
+Ext_User_Prm_Data_Ref(30)=101
+Ext_User_Prm_Data_Ref(31)=102
+Ext_User_Prm_Data_Ref(32)=103
+
+Ext_User_Prm_Data_Ref(33)=111
+Ext_User_Prm_Data_Ref(33)=112
+Ext_User_Prm_Data_Ref(34)=121
+Ext_User_Prm_Data_Ref(34)=122
+
+Ext_User_Prm_Data_Ref(35)=130
+Ext_User_Prm_Data_Ref(39)=131
+Ext_User_Prm_Data_Ref(43)=132
+Ext_User_Prm_Data_Ref(47)=133
+Ext_User_Prm_Data_Ref(51)=134
+
+Ext_User_Prm_Data_Ref(55)=135
+Ext_User_Prm_Data_Ref(56)=136
+Ext_User_Prm_Data_Ref(57)=137
+Ext_User_Prm_Data_Ref(58)=138
+
+EndModule

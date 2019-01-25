@@ -1,0 +1,393 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<ISO15745Profile xmlns="http://www.profibus.com/GSDML/2003/11/DeviceProfile" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.profibus.com/GSDML/2003/11/DeviceProfile ..\XSD\GSDML-DeviceProfile-v2.1.xsd">
+	<ProfileHeader>
+		<ProfileIdentification>PROFINET Device Profile</ProfileIdentification>
+		<ProfileRevision>1.00</ProfileRevision>
+		<ProfileName>Device Profile for PROFINET Devices</ProfileName>
+		<ProfileSource>PROFIBUS Nutzerorganisation e. V. (PNO)</ProfileSource>
+		<ProfileClassID>Device</ProfileClassID>
+		<ISO15745Reference>
+			<ISO15745Part>4</ISO15745Part>
+			<ISO15745Edition>1</ISO15745Edition>
+			<ProfileTechnology>GSDML</ProfileTechnology>
+		</ISO15745Reference>
+	</ProfileHeader>
+	<ProfileBody>
+    <DeviceIdentity VendorID="0x18B" DeviceID="0x0001">
+			<InfoText TextId="NDC710e_Infra_Gauge"/>
+			<VendorName Value="NDC Infrared Engineering Ltd"/>
+		</DeviceIdentity>
+		<DeviceFunction>
+			<Family MainFamily="I/O" ProductFamily="NDC 710e Gauge"/>
+		</DeviceFunction>
+		<ApplicationProcess>
+
+      <!--     -->
+      <!-- DAP -->
+      <!--     -->
+      <DeviceAccessPointList>
+        <DeviceAccessPointItem ID="NDC_PRT60" PhysicalSlots="0..1" ModuleIdentNumber="0x10100000" MinDeviceInterval="16384" ImplementationType="Intel" DNS_CompatibleName="NDCPRT" FixedInSlots="0" ObjectUUID_LocalIndex="1">
+          <ModuleInfo>
+            <Name TextId="NDC710e_Infra_Gauge_60"/>
+            <InfoText TextId="NDC710e_Infra_Gauge_60"/>
+            <VendorName Value="NDC Infrared Engineering Ltd"/>
+            <OrderNumber Value="NDC 60 Byte Output"/>
+            <HardwareRelease Value="2"/>
+            <SoftwareRelease Value="V 1.0.0"/>
+          </ModuleInfo>
+          <IOConfigData MaxInputLength="63" MaxOutputLength="63"/>
+          <UseableModules>
+            <ModuleItemRef ModuleItemTarget="1" AllowedInSlots="1" FixedInSlots="1"/>
+          </UseableModules>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="0" SubmoduleIdentNumber="0x10100001">
+              <IOData IOPS_Length="1" IOCS_Length="1"/>
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+          <Graphics>
+            <GraphicItemRef Type="DeviceSymbol" GraphicItemTarget="1" />
+          </Graphics>
+        </DeviceAccessPointItem>
+        <DeviceAccessPointItem ID="NDC_PRT252" PhysicalSlots="0..1" ModuleIdentNumber="0x10100000" MinDeviceInterval="16384" ImplementationType="Intel" DNS_CompatibleName="NDCPRT" FixedInSlots="0" ObjectUUID_LocalIndex="1">
+          <ModuleInfo>
+            <Name TextId="NDC710e_Infra_Gauge_252"/>
+            <InfoText TextId="NDC710e_Infra_Gauge_252"/>
+            <VendorName Value="NDC Infrared Engineering Ltd"/>
+            <OrderNumber Value="NDC 252 Byte Output"/>
+            <HardwareRelease Value="2"/>
+            <SoftwareRelease Value="V 1.0.0"/>
+          </ModuleInfo>
+          <IOConfigData MaxInputLength="255" MaxOutputLength="255"/>
+          <UseableModules>
+            <ModuleItemRef ModuleItemTarget="2" AllowedInSlots="1" FixedInSlots="1"/>
+          </UseableModules>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="1" SubmoduleIdentNumber="0x10100001">
+              <IOData IOPS_Length="1" IOCS_Length="1"/>
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+          <Graphics>
+            <GraphicItemRef Type="DeviceSymbol" GraphicItemTarget="1" />
+          </Graphics>
+        </DeviceAccessPointItem>
+        <DeviceAccessPointItem ID="NDC" PhysicalSlots="0..1" ModuleIdentNumber="0x10100000" MinDeviceInterval="8192" ImplementationType="Intel" DNS_CompatibleName="NDCPRT" FixedInSlots="0" ObjectUUID_LocalIndex="1">
+          <ModuleInfo>
+            <Name TextId="NDC710e_Infra_Gauge_137d"/>
+            <InfoText TextId="NDC710e_Infra_Gauge"/>
+            <VendorName Value="NDC Infrared Engineering Ltd"/>
+            <OrderNumber Value="NDCPRT"/>
+            <HardwareRelease Value="2"/>
+            <SoftwareRelease Value="V 1.0.0"/>
+          </ModuleInfo>
+          <IOConfigData MaxInputLength="256" MaxOutputLength="256"/>
+          <UseableModules>
+            <ModuleItemRef ModuleItemTarget="1" AllowedInSlots="1"/>
+            <ModuleItemRef ModuleItemTarget="2" AllowedInSlots="1"/>
+            <ModuleItemRef ModuleItemTarget="3" AllowedInSlots="1"/>
+            <ModuleItemRef ModuleItemTarget="4" AllowedInSlots="1"/>
+            <ModuleItemRef ModuleItemTarget="5" AllowedInSlots="1"/>
+            <ModuleItemRef ModuleItemTarget="6" AllowedInSlots="1"/>
+            <ModuleItemRef ModuleItemTarget="7" AllowedInSlots="1"/>
+            <ModuleItemRef ModuleItemTarget="8" AllowedInSlots="1"/>
+            <ModuleItemRef ModuleItemTarget="9" AllowedInSlots="1"/>
+          </UseableModules>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="2" SubmoduleIdentNumber="0x10100001">
+              <IOData IOPS_Length="1" IOCS_Length="1"/>
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+          <Graphics>
+            <GraphicItemRef Type="DeviceSymbol" GraphicItemTarget="1" />
+          </Graphics>
+        </DeviceAccessPointItem>
+			</DeviceAccessPointList>
+
+      <!--         -->
+      <!-- Modules -->
+      <!--         -->
+      <ModuleList>
+        <!-- 2 fixed module: 60 byte I/O and 252 byte I/O -->
+        <ModuleItem ID="1" ModuleIdentNumber="0x10200000">
+					<ModuleInfo CategoryRef="NDC Modules">
+						<Name TextId="Input_Output_Module_60"/>
+						<InfoText TextId="Input_Output_Module_60_Info"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="3" SubmoduleIdentNumber="0x10200001">
+							<IOData IOPS_Length="1" IOCS_Length="1">
+                <Input>
+                  <DataItem DataType="OctetString" Length="60" TextId="Data60"/>
+                </Input>
+                <Output>
+                  <DataItem DataType="OctetString" Length="60" TextId="Data60"/>
+                </Output>
+              </IOData>
+						</VirtualSubmoduleItem>
+					</VirtualSubmoduleList>
+				</ModuleItem>
+        <ModuleItem ID="2" ModuleIdentNumber="0x10200000">
+					<ModuleInfo CategoryRef="NDC Modules">
+						<Name TextId="Input_Output_Module_252"/>
+						<InfoText TextId="Input_Output_Module_252_Info"/>
+					</ModuleInfo>
+					<VirtualSubmoduleList>
+						<VirtualSubmoduleItem ID="4" SubmoduleIdentNumber="0x10200001">
+							<IOData IOPS_Length="1" IOCS_Length="1">
+                <Input>
+                  <DataItem DataType="OctetString" Length="252" TextId="Data252"/>
+                </Input>
+                <Output>
+                  <DataItem DataType="OctetString" Length="252" TextId="Data252"/>
+                </Output>
+              </IOData>
+						</VirtualSubmoduleItem>
+					</VirtualSubmoduleList>
+				</ModuleItem>
+        <ModuleItem ID="3" ModuleIdentNumber="0x10200000">
+          <ModuleInfo CategoryRef="NDC Modules">
+            <Name TextId="Input_Output_Module_4"/>
+            <InfoText TextId="Input_Output_Module_4_Info"/>
+          </ModuleInfo>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="5" SubmoduleIdentNumber="0x10200001">
+              <IOData IOPS_Length="1" IOCS_Length="1">
+                <Input>
+                  <DataItem DataType="OctetString" Length="4" TextId="Data4"/>
+                </Input>
+                <Output>
+                  <DataItem DataType="OctetString" Length="4" TextId="Data4"/>
+                </Output>
+              </IOData>
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+        <ModuleItem ID="4" ModuleIdentNumber="0x10200000">
+          <ModuleInfo CategoryRef="NDC Modules">
+            <Name TextId="Input_Output_Module_8"/>
+            <InfoText TextId="Input_Output_Module_8_Info"/>
+          </ModuleInfo>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="6" SubmoduleIdentNumber="0x10200001">
+              <IOData IOPS_Length="1" IOCS_Length="1">
+                <Input>
+                  <DataItem DataType="OctetString" Length="8" TextId="Data8"/>
+                </Input>
+                <Output>
+                  <DataItem DataType="OctetString" Length="8" TextId="Data8"/>
+                </Output>
+              </IOData>
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+        <ModuleItem ID="5" ModuleIdentNumber="0x10200000">
+          <ModuleInfo CategoryRef="NDC Modules">
+            <Name TextId="Input_Output_Module_16"/>
+            <InfoText TextId="Input_Output_Module_16_Info"/>
+          </ModuleInfo>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="7" SubmoduleIdentNumber="0x10200001">
+              <IOData IOPS_Length="1" IOCS_Length="1">
+                <Input>
+                  <DataItem DataType="OctetString" Length="16" TextId="Data16"/>
+                </Input>
+                <Output>
+                  <DataItem DataType="OctetString" Length="16" TextId="Data16"/>
+                </Output>
+              </IOData>
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+        <ModuleItem ID="6" ModuleIdentNumber="0x10200000">
+          <ModuleInfo CategoryRef="NDC Modules">
+            <Name TextId="Input_Output_Module_32"/>
+            <InfoText TextId="Input_Output_Module_32_Info"/>
+          </ModuleInfo>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="8" SubmoduleIdentNumber="0x10200001">
+              <IOData IOPS_Length="1" IOCS_Length="1">
+                <Input>
+                  <DataItem DataType="OctetString" Length="32" TextId="Data32"/>
+                </Input>
+                <Output>
+                  <DataItem DataType="OctetString" Length="32" TextId="Data32"/>
+                </Output>
+              </IOData>
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+        <ModuleItem ID="7" ModuleIdentNumber="0x10200000">
+          <ModuleInfo CategoryRef="NDC Modules">
+            <Name TextId="Input_Output_Module_64"/>
+            <InfoText TextId="Input_Output_Module_64_Info"/>
+          </ModuleInfo>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="9" SubmoduleIdentNumber="0x10200001">
+              <IOData IOPS_Length="1" IOCS_Length="1">
+                <Input>
+                  <DataItem DataType="OctetString" Length="64" TextId="Data64"/>
+                </Input>
+                <Output>
+                  <DataItem DataType="OctetString" Length="64" TextId="Data64"/>
+                </Output>
+              </IOData>
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+        <ModuleItem ID="8" ModuleIdentNumber="0x10200000">
+          <ModuleInfo CategoryRef="NDC Modules">
+            <Name TextId="Input_Output_Module_128"/>
+            <InfoText TextId="Input_Output_Module_128_Info"/>
+          </ModuleInfo>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="10" SubmoduleIdentNumber="0x10200001">
+              <IOData IOPS_Length="1" IOCS_Length="1">
+                <Input>
+                  <DataItem DataType="OctetString" Length="128" TextId="Data128"/>
+                </Input>
+                <Output>
+                  <DataItem DataType="OctetString" Length="128" TextId="Data128"/>
+                </Output>
+              </IOData>
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+        <ModuleItem ID="9" ModuleIdentNumber="0x10200000">
+          <ModuleInfo CategoryRef="NDC Modules">
+            <Name TextId="Input_Output_Module_140"/>
+            <InfoText TextId="Input_Output_Module_140_Info"/>
+          </ModuleInfo>
+          <VirtualSubmoduleList>
+            <VirtualSubmoduleItem ID="11" SubmoduleIdentNumber="0x10200001">
+              <IOData IOPS_Length="1" IOCS_Length="1">
+                <Input>
+                  <DataItem DataType="OctetString" Length="140" TextId="Data140"/>
+                </Input>
+                <Output>
+                  <DataItem DataType="OctetString" Length="140" TextId="Data140"/>
+                </Output>
+              </IOData>
+            </VirtualSubmoduleItem>
+          </VirtualSubmoduleList>
+        </ModuleItem>
+      </ModuleList>
+      <!--<ChannelDiagList>
+        <ChannelDiagItem ErrorType="16">
+          <Name TextId="Parameter assignment error"/>
+          <Help TextId="Parameter assignment error - Help"/>
+        </ChannelDiagItem>
+        <ChannelDiagItem ErrorType="17">
+          <Name TextId="Parameter assignment error"/>
+          <Help TextId="Parameter assignment error - Help"/>
+        </ChannelDiagItem>
+        <ChannelDiagItem ErrorType="18">
+          <Name TextId="Parameter assignment error"/>
+          <Help TextId="Parameter assignment error - Help"/>
+        </ChannelDiagItem>
+        <ChannelDiagItem ErrorType="19">
+          <Name TextId="Parameter assignment error"/>
+          <Help TextId="Parameter assignment error - Help"/>
+        </ChannelDiagItem>
+        <ChannelDiagItem ErrorType="20">
+          <Name TextId="Parameter assignment error"/>
+          <Help TextId="Parameter assignment error - Help"/>
+        </ChannelDiagItem>
+        <ChannelDiagItem ErrorType="21">
+          <Name TextId="Parameter assignment error"/>
+          <Help TextId="Parameter assignment error - Help"/>
+        </ChannelDiagItem>
+        <ChannelDiagItem ErrorType="22">
+          <Name TextId="Parameter assignment error"/>
+          <Help TextId="Parameter assignment error - Help"/>
+        </ChannelDiagItem>
+        <ChannelDiagItem ErrorType="23">
+          <Name TextId="Parameter assignment error"/>
+          <Help TextId="Parameter assignment error - Help"/>
+        </ChannelDiagItem>
+        <ChannelDiagItem ErrorType="24">
+          <Name TextId="Parameter assignment error"/>
+          <Help TextId="Parameter assignment error - Help"/>
+        </ChannelDiagItem>
+        <ChannelDiagItem ErrorType="25">
+          <Name TextId="Parameter assignment error"/>
+          <Help TextId="Parameter assignment error - Help"/>
+        </ChannelDiagItem>
+        <ChannelDiagItem ErrorType="26">
+          <Name TextId="Parameter assignment error"/>
+          <Help TextId="Parameter assignment error - Help"/>
+        </ChannelDiagItem>
+        <ChannelDiagItem ErrorType="27">
+          <Name TextId="Parameter assignment error"/>
+          <Help TextId="Parameter assignment error - Help"/>
+        </ChannelDiagItem>
+        <ChannelDiagItem ErrorType="31">
+          <Name TextId="Parameter assignment error"/>
+          <Help TextId="Parameter assignment error - Help"/>
+        </ChannelDiagItem>
+      </ChannelDiagList>-->
+      <!--<UnitDiagTypeList>
+        <UnitDiagTypeItem UserStructureIdentifier="1">
+          <Ref ValueItemTarget="Diagnostics IO bus" ByteOffset="1" DataType="Unsigned8" DefaultValue="1" TextId="Diagnostics IO bus"/>
+        </UnitDiagTypeItem>
+        <UnitDiagTypeItem UserStructureIdentifier="2">
+          <Ref ByteOffset="0" DataType="Unsigned8" DefaultValue="1" TextId="Diagnostics packing"/>
+        </UnitDiagTypeItem>
+      </UnitDiagTypeList>-->
+      <GraphicsList>
+        <GraphicItem ID="1" GraphicFile="GSDML-V2.1-NDC-710-20101210" />
+      </GraphicsList>
+			<CategoryList>
+				<CategoryItem ID="NDC Modules" TextId="NDC_Modules"/>
+			</CategoryList>
+
+			<!--      -->
+			<!-- Text -->
+			<!--      -->
+			<ExternalTextList>
+        <!-- Primary (English) -->
+				<PrimaryLanguage>
+          <!--<Text TextId="Parameter assignment error" Value="Parameter assignment error" />
+          <Text TextId="Parameter assignment error - Help" Value="Parameter assignment error - Help" />
+          <Text TextId="Diagnostics IO bus" Value="Diagnostics IO bus" />
+          <Text TextId="Diagnostics packing" Value="Diagnostics packing" />-->
+          <Text TextId="NDC710e_Infra_Gauge" Value="NDC 710e Infra Gauge" />
+          <Text TextId="NDC710e_Infra_Gauge_137d" Value="Firmware Version 1v3v8 or Above" />
+          <Text TextId="NDC710e_Infra_Gauge_60" Value="060 byte CT Build Pre 1v3v8"/>
+          <Text TextId="NDC710e_Infra_Gauge_252" Value="252 byte Build Pre 1v3v8"/>
+          <Text TextId="NDC710e_Infra_Gauge_4" Value="NDC 710e Infra Gauge 4 byte"/>
+          <Text TextId="NDC710e_Infra_Gauge_8" Value="NDC 710e Infra Gauge 8 byte"/>
+          <Text TextId="NDC710e_Infra_Gauge_16" Value="NDC 710e Infra Gauge 16 byte"/>
+          <Text TextId="NDC710e_Infra_Gauge_32" Value="NDC 710e Infra Gauge 32 byte"/>
+					<Text TextId="NDC_PRT" Value="NDCPRT"/>
+					<Text TextId="Input_Output_Module_60" Value="Input-Output Module 060"/>
+          <Text TextId="Input_Output_Module_60_Info" Value="Input-Output Module 60 Info"/>
+          <Text TextId="Data60" Value="60 byte (15 x 32-bit data)"/>
+					<Text TextId="Input_Output_Module_252" Value="Input-Output Module 252"/>
+          <Text TextId="Input_Output_Module_252_Info" Value="Input-Output Module 252 Info"/>
+          <Text TextId="Data252" Value="252 byte (63 x 32-bit data)"/>
+          <Text TextId="Input_Output_Module_4" Value="Input-Output Module 004"/>
+          <Text TextId="Input_Output_Module_4_Info" Value="Input-Output Module 4 Info"/>
+          <Text TextId="Data4" Value="4 byte (1 x 32-bit data)"/>
+          <Text TextId="Input_Output_Module_8" Value="Input-Output Module 008"/>
+          <Text TextId="Input_Output_Module_8_Info" Value="Input-Output Module 8 Info"/>
+          <Text TextId="Data8" Value="8 byte (2 x 32-bit data)"/>
+          <Text TextId="Input_Output_Module_16" Value="Input-Output Module 016"/>
+          <Text TextId="Input_Output_Module_16_Info" Value="Input-Output Module 16 Info"/>
+          <Text TextId="Data16" Value="16 byte (4 x 32-bit data)"/>
+          <Text TextId="Input_Output_Module_32" Value="Input-Output Module 032"/>
+          <Text TextId="Input_Output_Module_32_Info" Value="Input-Output Module 32 Info"/>
+          <Text TextId="Data32" Value="32 byte (8 x 32-bit data)"/>
+          <Text TextId="Input_Output_Module_64" Value="Input-Output Module 064"/>
+          <Text TextId="Input_Output_Module_64_Info" Value="Input-Output Module 64 Info"/>
+          <Text TextId="Data64" Value="64 byte (16 x 32-bit data)"/>
+          <Text TextId="Input_Output_Module_128" Value="Input-Output Module 128"/>
+          <Text TextId="Input_Output_Module_128_Info" Value="Input-Output Module 128 Info"/>
+          <Text TextId="Data128" Value="128 byte (32 x 32-bit data)"/>
+          <Text TextId="Input_Output_Module_140" Value="Input-Output Module 140"/>
+          <Text TextId="Input_Output_Module_140_Info" Value="Input-Output Module 140 Info"/>
+          <Text TextId="Data140" Value="140 byte (35 x 32-bit data)"/>
+          <Text TextId="NDC_Modules" Value="NDC Modules"/>
+        </PrimaryLanguage>
+			</ExternalTextList>
+		</ApplicationProcess>
+	</ProfileBody>
+</ISO15745Profile>

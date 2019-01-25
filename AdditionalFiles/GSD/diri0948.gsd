@@ -1,0 +1,154 @@
+#Profibus_DP
+; General parameters
+GSD_Revision        = 1
+Vendor_Name         = "SOCOMEC"
+Model_Name          = "DIRIS A40"
+Revision            = "Version 1.00"
+Ident_Number        = 0x0948
+Protocol_Ident      = 0  ; 0 : Profibus DP
+Station_Type        = 0  ; 0 : slave
+FMS_supp            = 0
+Hardware_Release    = "Version 1.0"
+Software_Release    = "Version 1.0"
+;
+9.6_supp            = 1
+19.2_supp           = 1
+93.75_supp          = 1
+187.5_supp          = 1
+500_supp            = 1
+1.5M_supp           = 1
+3M_supp             = 0
+6M_supp             = 0
+12M_supp            = 0
+;
+MaxTsdr_9.6         = 60
+MaxTsdr_19.2        = 60
+MaxTsdr_93.75       = 60
+MaxTsdr_187.5       = 60
+MaxTsdr_500         = 100
+MaxTsdr_1.5M        = 150
+MaxTsdr_3M          = 250
+MaxTsdr_6M          = 450
+MaxTsdr_12M         = 800
+;
+Redundancy          = 0
+Repeater_Ctrl_Sig   = 0
+24V_Pins            = 0
+Implementation_Type = "SPC3"
+;
+Slave_Family        = 0   ; general
+Max_Diag_Data_Len   = 48
+;Bitmap_device
+;Bitmap_Diag
+;Bitmap_SF;
+;
+
+; Slave-Specification
+Freeze_Mode_supp     = 0
+Sync_Mode_supp       = 0
+Auto_Baud_supp       = 1       ; Autobaud supported
+Set_Slave_Add_supp   = 0			; No automatic address detection
+Min_Slave_Intervall  = 10			; Min. Poll cyclic time(1ms time base 100µs)
+;
+User_Prm_Data_Len    = 54
+User_Prm_Data	      = 0x00,\                ; Spec_User_Prm_Byte
+									 0x05,\                ; Network type 4: 4NBL
+									 0x05,\                ; CT secondary 5:5A
+									 0x01,0xf4,\           ; CT primary  500
+									 0x00,\                ; Voltage input : no
+									 0x00,0x00,0x00,0x64,\ ; PT primary 100 V
+									 0x64,\                ; PT secondary : 100V
+									 0x05,\                ; Synchronisation I : 5min
+									 0x05,\                ; Synchronisation P : 5min
+									 0x00,\                ; Out1 allocation kwh+
+									 0x01,\                ; Out1 impulse 1kwh
+									 0x01,\                ; Out1 impulse duration 100 ms
+									 0x01,\                ; Out2 allocation kvarh+
+									 0x01,\                ; Out2 impulse 1kwh
+									 0x01,\                ; Out2 impulse duration 100 ms
+									 0x00,\                ; Analog output type OUT1 0 : 0/20mA
+									 0x00,\                ; Output allocation analog OUT1 0 : I1
+									 0x00,0x00,\           ; Value at 0 or 4 from output analog OUT1
+									 0x00,\                ; Unit at 0 or 4 from output analog OUT1 0 : /
+									 0x00,0x00,\           ; Value at 20 from output analog OUT1
+									 0x00,\                ; Unit at 20 from output analog OUT1 0 : /
+									 0x00,\                ; Analog output type OUT2 0 : 0/20mA
+									 0x00,\                ; Output allocation analog OUT2 0 : I1
+									 0x00,0x00,\           ; Value at 0 or 4 from output analog OUT2
+									 0x00,\                ; Unit at 0 or 4 from output analog OUT2 0 : /
+									 0x00,0x00,\           ; Value at 20 from output analog OUT2
+									 0x00,\                ; Unit at 20 from output analog OUT2 0 : /
+									 0x00,\                ; Analog output type OUT3 0 : 0/20mA
+									 0x00,\                ; Output allocation analog OUT3 0 : I1
+									 0x00,0x00,\           ; Value at 0 or 4 from output analog OUT3
+									 0x00,\                ; Unit at 0 or 4 from output analog OUT3 0 : /
+									 0x00,0x00,\           ; Value at 20 from output analog OUT3
+									 0x00,\                ; Unit at 20 from output analog OUT3 0 : /
+									 0x00,\                ; Analog output type OUT4 0 : 0/20mA
+									 0x00,\                ; Output allocation analog OUT4 0 : I1
+									 0x00,0x00,\           ; Value at 0 or 4 from output analog OUT4
+									 0x00,\                ; Unit at 0 or 4 from output analog OUT4 0 : /
+									 0x00,0x00,\           ; Value at 20 from output analog OUT4
+									 0x00,\                ; Unit at 20 from output analog OUT4 0 : /
+									 0x05,\                ; CT secondary for IN mesurement 5:5A
+									 0x01,0xf4             ; CT primary for IN mesurement 500
+	;
+Modular_Station     = 1
+Max_Module          = 4
+Max_Input_Len       = 95
+Max_Output_Len      = 60
+Max_Data_Len        = 155
+
+; for each module :
+; output : consistency    (bit 7 : 1 )
+;          byte           (bit 6 : 0 )
+; input  : consistency    (bit 7 : 1 )
+;          word           (bit 6 : 1 )
+
+
+Module = "Principal values" 0xC1,0x1c,0x61,0x01
+EndModule
+;
+Module = "Other values" 0xC1,0x1c,0x60,0x02
+EndModule
+;
+Module = "Memorised Alarm Relay 1" 0xC1,0x1c,0x51,0x03
+EndModule
+;
+Module = "Memorised Alarm Relay 2" 0xC1,0x1c,0x51,0x04
+EndModule
+;
+Module = "3I&IN harmonics" 0xC1,0x1c,0x5f,0x05
+EndModule
+;
+Module = "3U harmonics" 0xC1,0x1c,0x57,0x06
+EndModule
+;
+Module = "3V harmonics" 0xC1,0x1c,0x57,0x07
+EndModule
+;
+Module = "Instantanous MinMax" 0xC1,0x1c,0x53,0x08
+EndModule
+;
+
+Module = "Specific Data" 0xC1,0x20,0x20,0x09
+EndModule
+;
+
+Module = "Specific short Data" 0xC1,0x08,0x08,0x0B
+EndModule
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

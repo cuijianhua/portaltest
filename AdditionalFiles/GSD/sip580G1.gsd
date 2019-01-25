@@ -1,0 +1,564 @@
+;pa_link_2bax1.dat: Header file for the DPV1 version of an
+; automatically generated GSD-File for IM153-2 (PA-Link)
+;
+;========================================================
+; GSD-File for IM153-2 (PA-Link)              Siemens AG
+; MLFB: 6ES7 153-2BA01-0XB0 and
+;       6ES7 153-2BA81-0XB0 and
+;       6ES7 153-2BA02-0XB0 and
+;       6ES7 153-2BA82-0XB0
+; Date: 2007-04-10  V1.1  (Header Version)
+; File: SIP58052.GSD
+; Support: Customer-Support Nuernberg +49 (180) 5050-222
+;========================================================
+#Profibus_DP
+; Prm-Text-Definition-List:
+PrmText = 2
+Text(0) = "enable"
+Text(1) = "disable"
+EndPrmText
+;
+PrmText = 3
+Text(0) = "6ES7 153-2BA01(2)-0XB0"
+Text(1) = "6ES7 153-2BA81(2)-0XB0"
+EndPrmText
+;
+PrmText = 4
+Text(0xDF) = "Single-Mode"
+Text(0xE7) = "Redundancy-Mode"
+EndPrmText
+;
+ExtUserPrmData=7 "Identifier related diagnosis"
+Bit(0) 0 0-1
+Prm_Text_Ref=2
+EndExtUserPrmData
+;
+ExtUserPrmData=8 "Module status"
+Bit(1) 0 0-1
+Prm_Text_Ref=2
+EndExtUserPrmData
+;
+ExtUserPrmData=9 "Device related diagnosis"
+Bit(2) 0 0-1
+Prm_Text_Ref=2
+EndExtUserPrmData
+;
+ExtUserPrmData=10 "MLFB"
+Bit(0) 1 0-1
+Prm_Text_Ref=3
+EndExtUserPrmData
+;
+;station address for pa slaves
+ExtUserPrmData=11 "Station address"
+Unsigned8 3 3-125
+EndExtUserPrmData
+;
+;length of diagnostics
+ExtUserPrmData=12 "Length of diagnostics"
+Unsigned8 0xDF 0xDF,0xE7
+Prm_Text_Ref=4
+EndExtUserPrmData
+;
+; Unit-Definition-List:
+GSD_Revision          = 5
+Vendor_Name           = "SIEMENS"
+Slave_Family          = 9@DP/PA Link
+Model_Name            = "DP/PA-Link(IM153-2),DPV1,G1"
+Revision              = "V1.0"
+Ident_Number          = 0x8052
+Protocol_Ident        = 0
+Station_Type          = 0
+Hardware_Release      = "V4.0"
+Software_Release      = "V4.0"
+9.6_supp              = 1
+19.2_supp             = 1
+45.45_supp            = 1
+93.75_supp            = 1
+187.5_supp            = 1
+500_supp              = 1
+1.5M_supp             = 1
+3M_supp               = 1
+6M_supp               = 1
+12M_supp              = 1
+MaxTsdr_9.6           = 15
+MaxTsdr_19.2          = 15
+MaxTsdr_45.45         = 15
+MaxTsdr_93.75         = 15
+MaxTsdr_187.5         = 15
+MaxTsdr_500           = 15
+MaxTsdr_1.5M          = 25
+MaxTsdr_3M            = 50
+MaxTsdr_6M            = 100
+MaxTsdr_12M           = 200
+Repeater_Ctrl_Sig     = 2
+;
+Implementation_Type   = "IBC16"
+Bitmap_Device         = "IM157_1N"
+Bitmap_SF             = "IM157_1S"
+;
+; Slave-Specification:
+OrderNumber           = "6ES7 153-2BA*1(2)-0XB0"
+Freeze_Mode_supp      = 1
+Sync_Mode_supp        = 1
+Auto_Baud_supp        = 1
+Prm_Block_Structure_supp         = 1
+Set_Slave_Add_supp    = 0
+Fail_Safe             = 1
+Min_Slave_Intervall   = 1
+Modular_Station       = 1
+Max_Module            = 236
+Max_Input_Len         = 244
+Max_Output_Len        = 244
+Max_Data_Len          = 488
+Max_Diag_Data_Len     = 223
+;
+;Redundancy (Rev 5)
+PrmCmd_supp           = 1
+Slave_Max_Switch_Over_Time = 912
+Slave_Redundancy_supp = 8
+;
+;Jokerblock (Rev 5)
+Jokerblock_supp       = 1
+Jokerblock_Type       = 32
+Jokerblock_Slot       = 00
+Jokerblock_Location   = 0
+End_Jokerblock_Type
+;
+; UserPrmData: Length and Preset
+Max_User_Prm_Data_Len=237
+;DPV1-Status
+Ext_User_Prm_Data_Const(0)   = 0x00,0x01,0x08
+;User-Prm-Structure
+Ext_User_Prm_Data_Const(3)   = 0x09,0x81,0x00,0x00,0xdf,0x00,0x00,0x01,0x31
+;length of diagnostics
+Ext_User_Prm_Data_Ref(7)=12
+;Identifier related diagnosis
+Ext_User_Prm_Data_Ref(8)=7
+;Module status
+Ext_User_Prm_Data_Ref(8)=8
+;Device related diagnosis
+Ext_User_Prm_Data_Ref(8)=9
+;choice of MLFB
+Ext_User_Prm_Data_Ref(11)=10
+;
+; DP extensions:
+DPV1_Slave                       = 1
+C1_Read_Write_supp               = 1
+C2_Read_Write_supp               = 1
+C1_Max_Data_Len                  = 240
+C2_Max_Data_Len                  = 240
+C1_Response_Timeout              = 65535 ; maximum value, as dependent from unknown PA slave
+C2_Response_Timeout              = 65535 ; maximum value, as dependent from unknown PA slave
+C2_Max_Count_Channels            = 15
+Max_Initiate_PDU_Length          = 244   ; maximum value
+Diagnostic_Alarm_supp            = 1
+Process_Alarm_supp               = 1
+Pull_Plug_Alarm_supp             = 1
+Status_Alarm_supp                = 1
+Update_Alarm_supp                = 1
+Manufacturer_Specific_Alarm_supp = 1
+Extra_Alarm_SAP_supp             = 1
+Alarm_Type_Mode_supp             = 1
+WD_Base_1ms_supp                 = 1
+Check_Cfg_Mode                   = 1
+;
+; Data_Ex with Broadcast:
+Publisher_Supp                   = 1
+;
+;I&M
+DS248_FCT=0xF111
+Ident_maintenance_supp = 1
+;
+; Module-Definitions:
+;
+;============Manufacturer Specific GSD Entries=================
+;
+
+
+;=======================================================================================
+;EH3X1541.GSD
+;following module included by 'GSD-TOOL for IM 157 / IM 153-2 - V 2.1'!
+;22.05.18  09:20:49
+;for visualisation purposes only!
+Module = "Endress+Hauser" 0x01, 0xf9 
+2
+EndModule
+Module = "Cerabar S evolution" 0x01, 0xf9 
+3
+EndModule
+Module = "Begin of Device_1541" 0x01, 0xfa
+4
+Ext_Module_Prm_Data_Len = 3
+Ext_User_Prm_Data_Const(0) 	= 0x15
+Ext_User_Prm_Data_Const(1) 	= 0x41
+Ext_User_Prm_Data_Ref(2) = 11
+EndModule
+Module     = "== Main Process Value_1541"	0x42,0x84,0x08,0x05
+Info_Text = "Main Process Value"
+
+5
+EndModule
+Module     = "== 2nd Cyclic Value_1541"	0x42,0x84,0x08,0x05
+Info_Text = "2nd Cyclic Value"
+
+6
+EndModule
+Module     = "== Display Value_1541"	0x82,0x84,0x08,0x05
+Info_Text = "Display Value"
+
+7
+EndModule
+Module     = "== Free Place_1541"	0x00
+Info_Text = "Free Place"
+
+8
+EndModule
+;=======================================================================================
+;SAMS071D.gsd
+;following module included by 'GSD-TOOL for IM 157 / IM 153-2 - V 2.1'!
+;22.05.18  09:20:49
+;for visualisation purposes only!
+Module = "SAMSON AG" 0x01, 0xf9 
+9
+EndModule
+Module = "Positioner 373x-4" 0x01, 0xf9 
+10
+EndModule
+Module = "Begin of Device_071D" 0x01, 0xfa
+11
+Ext_Module_Prm_Data_Len = 3
+Ext_User_Prm_Data_Const(0) 	= 0x07
+Ext_User_Prm_Data_Const(1) 	= 0x1D
+Ext_User_Prm_Data_Ref(2) = 11
+EndModule
+Module   ="== SP (short)       _071D"	0xA4
+Info_Text = "SP (short)       "
+
+12
+EndModule
+Module   ="== SP (long)        _071D"	0x82,0x84,0x08,0x05
+Info_Text = "SP (long)        "
+
+13
+EndModule
+Module   ="== RCAS_IN+RCAS_OUT _071D"	0xC4,0x84,0x84,0x08,0x05,0x08,0x05
+Info_Text = "RCAS_IN+RCAS_OUT "
+
+14
+EndModule
+Module   ="== SP+READBACK+POS_D_071D"	0xC6,0x84,0x86,0x08,0x05,0x08,0x05,0x05,0x05
+Info_Text = "SP+READBACK+POS_D"
+
+15
+EndModule
+Module   ="== SP+CHECKBACK     _071D"	0xC3,0x84,0x82,0x08,0x05,0x0A
+Info_Text = "SP+CHECKBACK     "
+
+16
+EndModule
+Module   ="== SP+READBACK+POS_D+CHEC_071D"	0xC7,0x84,0x89,0x08,0x05,0x08,0x05,0x05,0x05,0x0A
+Info_Text = "SP+READBACK+POS_D+CHECKBACK"
+
+17
+EndModule
+Module   ="== RCAS_IN+RCAS_OUT+CHECK_071D"	0xC5,0x84,0x87,0x08,0x05,0x08,0x05,0x0A
+Info_Text = "RCAS_IN+RCAS_OUT+CHECKBACK"
+
+18
+EndModule
+Module   ="== SP+RCIN+READB+RCOUT+PO_071D"	0xCB,0x89,0x8E,0x08,0x05,0x08,0x05,0x08,0x05,0x08,0x05,0x05,0x05,0x0A
+Info_Text = "SP+RCIN+READB+RCOUT+POS_D+CHECKB"
+
+19
+EndModule
+Module   = "==  Discrete Input (DI)_071D"	0x91
+Info_Text = " Discrete Input (DI)"
+
+20
+EndModule
+Module   = "== Empty Module      _071D"	0x00
+Info_Text = "Empty Module      "
+
+21
+EndModule
+;=======================================================================================
+;eh3_153C.GSD
+;following module included by 'GSD-TOOL for IM 157 / IM 153-2 - V 2.1'!
+;22.05.18  09:20:49
+;for visualisation purposes only!
+Module = "Endress+Hauser" 0x01, 0xf9 
+22
+EndModule
+Module = "PROWIRL 73 PA" 0x01, 0xf9 
+23
+EndModule
+Module = "Begin of Device_153C" 0x01, 0xfa
+24
+Ext_Module_Prm_Data_Len = 3
+Ext_User_Prm_Data_Const(0) 	= 0x15
+Ext_User_Prm_Data_Const(1) 	= 0x3C
+Ext_User_Prm_Data_Ref(2) = 11
+EndModule
+Module              = "== EMPTY_MODULE_153C"	0x00
+Info_Text = "EMPTY_MODULE"
+
+25
+EndModule
+Module              = "== AI_153C"	0x94
+Info_Text = "AI"
+
+26
+EndModule
+Module              = "== TOTAL_153C"	0x41, 0x84, 0x85
+Info_Text = "TOTAL"
+
+27
+EndModule
+Module              = "== SET_TOTAL_153C"	0xC1, 0x80, 0x84, 0x85
+Info_Text = "SET_TOTAL"
+
+28
+EndModule
+Module              = "== SET_MODE_TOTAL_153C"	0xC1, 0x81, 0x84, 0x85
+Info_Text = "SET_MODE_TOTAL"
+
+29
+EndModule
+Module              = "== SET_PRESET_UNIT_TOTAL_153C"	0xC1, 0x86, 0x84, 0x85
+Info_Text = "SET_PRESET_UNIT_TOTAL"
+
+30
+EndModule
+Module              = "== SET_MODE_PRESET_UNIT_T_153C"	0xC1, 0x87, 0x84, 0x85
+Info_Text = "SET_MODE_PRESET_UNIT_TOTAL"
+
+31
+EndModule
+Module              = "== PRESSURE_VALUE_153C"	0x83, 0x86, 0x08, 0x05, 0x06
+Info_Text = "PRESSURE_VALUE"
+
+32
+EndModule
+Module              = "== DISPLAY_VALUE_153C"	0x83, 0x8A, 0x08, 0x05, 0x09
+Info_Text = "DISPLAY_VALUE"
+
+33
+EndModule
+Module              = "== CONTROL_BLOCK_153C"	0x20
+Info_Text = "CONTROL_BLOCK"
+
+34
+EndModule
+;=======================================================================================
+;Eh3x1551.gsd
+;following module included by 'GSD-TOOL for IM 157 / IM 153-2 - V 2.1'!
+;22.05.18  09:20:49
+;for visualisation purposes only!
+Module = "Endress+Hauser" 0x01, 0xf9 
+35
+EndModule
+Module = "iTEMP TMT84" 0x01, 0xf9 
+36
+EndModule
+Module = "Begin of Device_1551" 0x01, 0xfa
+37
+Ext_Module_Prm_Data_Len = 3
+Ext_User_Prm_Data_Const(0) 	= 0x15
+Ext_User_Prm_Data_Const(1) 	= 0x51
+Ext_User_Prm_Data_Ref(2) = 11
+EndModule
+Module              = "== EMPTY_MODULE_1551"	0x00
+Info_Text = "EMPTY_MODULE"
+
+38
+EndModule
+Module              = "== AI_1551"	0x42, 0x84, 0x08, 0x05
+Info_Text = "AI"
+
+39
+EndModule
+Module              = "== DISPLAY_VALUE_1551"	0x82, 0x84, 0x08, 0x05
+Info_Text = "DISPLAY_VALUE"
+
+40
+EndModule
+;=======================================================================================
+;EH3x1564.GSD
+;following module included by 'GSD-TOOL for IM 157 / IM 153-2 - V 2.1'!
+;22.05.18  09:20:49
+;for visualisation purposes only!
+Module = "Endress+Hauser" 0x01, 0xf9 
+41
+EndModule
+Module = "Prowirl 200 PA" 0x01, 0xf9 
+42
+EndModule
+Module = "Begin of Device_1564" 0x01, 0xfa
+43
+Ext_Module_Prm_Data_Len = 3
+Ext_User_Prm_Data_Const(0) 	= 0x15
+Ext_User_Prm_Data_Const(1) 	= 0x64
+Ext_User_Prm_Data_Ref(2) = 11
+EndModule
+Module = "== EMPTY_MODULE_1564"	0x00
+Info_Text = "EMPTY_MODULE"
+
+44
+EndModule
+Module = "== AI : OUT (Analog Input_1564"	0x42,0x84,0x08,0x05
+Info_Text = "AI : OUT (Analog Input)"
+
+45
+EndModule
+Module = "== TOTAL _1564"	0x41,0x84,0x85
+Info_Text = "TOTAL "
+
+46
+EndModule
+Module = "== SETTOT_TOTAL _1564"	0xC1,0x80,0x84,0x85
+Info_Text = "SETTOT_TOTAL "
+
+47
+EndModule
+Module = "== SETTOT_MODETOT_TOTAL _1564"	0xC1,0x81,0x84,0x85
+Info_Text = "SETTOT_MODETOT_TOTAL "
+
+48
+EndModule
+Module = "== AO : SP (Analog Output_1564"	0x82,0x84,0x08,0x05
+Info_Text = "AO : SP (Analog Output)"
+
+49
+EndModule
+Module = "== DI : OUT (Digital Inpu_1564"	0x91
+Info_Text = "DI : OUT (Digital Input)"
+
+50
+EndModule
+Module = "== DO : SP (Digital Outpu_1564"	0xA1
+Info_Text = "DO : SP (Digital Output); Prowirl 200 PA"
+
+51
+EndModule
+;=======================================================================================
+;EH_x1507.GSD
+;following module included by 'GSD-TOOL for IM 157 / IM 153-2 - V 2.1'!
+;22.05.18  09:20:49
+;for visualisation purposes only!
+Module = "Endress+Hauser" 0x01, 0xf9 
+52
+EndModule
+Module = "TMD834" 0x01, 0xf9 
+53
+EndModule
+Module = "Begin of Device_1507" 0x01, 0xfa
+54
+Ext_Module_Prm_Data_Len = 3
+Ext_User_Prm_Data_Const(0) 	= 0x15
+Ext_User_Prm_Data_Const(1) 	= 0x07
+Ext_User_Prm_Data_Ref(2) = 11
+EndModule
+Module              	= "== pv_status_1507"	0x42, 0x84, 0x08, 0x05
+Info_Text = "pv_status"
+
+55
+EndModule
+;=======================================================================================
+;EH3_1523.GSD
+;following module included by 'GSD-TOOL for IM 157 / IM 153-2 - V 2.1'!
+;22.05.18  09:20:49
+;for visualisation purposes only!
+Module = "Endress + Hauser" 0x01, 0xf9 
+56
+EndModule
+Module = "iTEMP PA TMT 184" 0x01, 0xf9 
+57
+EndModule
+Module = "Begin of Device_1523" 0x01, 0xfa
+58
+Ext_Module_Prm_Data_Len = 3
+Ext_User_Prm_Data_Const(0) 	= 0x15
+Ext_User_Prm_Data_Const(1) 	= 0x23
+Ext_User_Prm_Data_Ref(2) = 11
+EndModule
+Module = "== IN=Temperature, OUT=Di_1523"	0x94,0xA4
+Info_Text = "IN=Temperature, OUT=Display"
+
+59
+EndModule
+;=======================================================================================
+;Sams3785.gsd
+;following module included by 'GSD-TOOL for IM 157 / IM 153-2 - V 2.1'!
+;22.05.18  09:20:49
+;for visualisation purposes only!
+Module = "SAMSON AG" 0x01, 0xf9 
+60
+EndModule
+Module = "Positioner 3785" 0x01, 0xf9 
+61
+EndModule
+Module = "Begin of Device_3785" 0x01, 0xfa
+62
+Ext_Module_Prm_Data_Len = 3
+Ext_User_Prm_Data_Const(0) 	= 0x37
+Ext_User_Prm_Data_Const(1) 	= 0x85
+Ext_User_Prm_Data_Ref(2) = 11
+EndModule
+Module      = "== SP                    _3785"	0xA4
+Info_Text = "SP                              "
+
+63
+EndModule
+Module      = "== RCAS_OUT, RCAS_IN     _3785"	0xB4
+Info_Text = "RCAS_OUT, RCAS_IN               "
+
+64
+EndModule
+Module      = "== READBACK + POS_D, SP  _3785"	0x96, 0xA4
+Info_Text = "READBACK + POS_D, SP            "
+
+65
+EndModule
+Module      = "== CHECKBACK, SP         _3785"	0x92, 0xA4
+Info_Text = "CHECKBACK, SP                   "
+
+66
+EndModule
+Module      = "== READBACK + POS_D + CHE_3785"	0x99, 0xA4
+Info_Text = "READBACK + POS_D + CHECKBACK, SP"
+
+67
+EndModule
+Module      = "== RCAS_OUT + CHECKBACK, _3785"	0x97, 0xA4
+Info_Text = "RCAS_OUT + CHECKBACK, RCAS_IN   "
+
+68
+EndModule
+Module      = "== RB+ RC_OUT+ POS_D+ CB,_3785"	0x9E, 0xA9
+Info_Text = "RB+ RC_OUT+ POS_D+ CB, SP+ RC_IN"
+
+69
+EndModule
+;=======================================================================================
+;EH__1507.GSD
+;following module included by 'GSD-TOOL for IM 157 / IM 153-2 - V 2.1'!
+;22.05.18  09:20:49
+;for visualisation purposes only!
+Module = "Endress + Hauser" 0x01, 0xf9 
+70
+EndModule
+Module = "TMD834      " 0x01, 0xf9 
+71
+EndModule
+Module = "Begin of Device_1507" 0x01, 0xfa
+72
+Ext_Module_Prm_Data_Len = 3
+Ext_User_Prm_Data_Const(0) 	= 0x15
+Ext_User_Prm_Data_Const(1) 	= 0x07
+Ext_User_Prm_Data_Ref(2) = 11
+EndModule
+Module              = "== pv_status_1507"	0x42, 0x84, 0x08, 0x05
+Info_Text = "pv_status"
+
+73
+EndModule
